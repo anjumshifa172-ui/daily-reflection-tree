@@ -1,0 +1,40 @@
+
+
+id	parentId	type	text	options	target	signal
+START	null	start	Good evening. Let's look at your day.	
+A0_OPEN	START	question	First, how would you describe today in one word?	Tough|Productive|Mixed|Frustrating	A1_Q_AGENCY	
+A1_Q_AGENCY	A0_OPEN	question	When something didn't go as planned today, what was your first instinct?	Find what I could control|Blame circumstances|I adapted|Wait it out	A1_D1	
+A1_D1	A1_Q_AGENCY	decision	answer=Find what I could control|I adapted:A1_R_INT,answer=Blame circumstances|Wait it out:A1_R_EXT	
+A1_R_INT	A1_D1	reflection	You see your hand in what happened today. That's agency — not everything went your way, but you chose your response.	A1_Q2	axis1:internal
+A1_R_EXT	A1_D1	reflection	A tough day pulls attention outward — to what others did or didn't do. Noticing when we go external is the first step to reclaiming choice.	A1_Q2	axis1:external
+A1_Q2	A1_R_INT	question	Thinking about today's biggest outcome, who or what was the #1 driver?	My actions|My boss|The deadline|My habits	D1_FINAL	
+A1_Q2	A1_R_EXT	question	Thinking about today's biggest outcome, who or what was the #1 driver?	My actions|My boss|The deadline|My habits	D1_FINAL	
+D1_FINAL	A1_Q2	decision	answer=My actions|My habits:A1_FINAL_INT,answer=My boss|The deadline:A1_FINAL_EXT	
+A1_FINAL_INT	D1_FINAL	reflection	You picked your answer. That confirms a Victor pattern today: you locate cause inside your control.	BRIDGE_1_2	axis1:victor
+A1_FINAL_EXT	D1_FINAL	reflection	You picked your answer. That confirms a Victim pattern today: cause felt outside you. The shift starts with one small controllable choice.	BRIDGE_1_2	axis1:victim
+BRIDGE_1_2	A1_FINAL_INT	bridge	Now let's shift from how you handled things — to what you gave today.	A2_Q1	
+BRIDGE_1_2	A1_FINAL_EXT	bridge	Now let's shift from how you handled things — to what you gave today.	A2_Q1	
+A2_Q1	BRIDGE_1_2	question	Think about one interaction today. Were you giving or expecting?	I helped someone|I did extra work|I felt I deserved more|I was frustrated others weren't helping	D2_A	
+D2_A	A2_Q1	decision	answer=I helped someone|I did extra work:A2_R_CON,answer=I felt I deserved more|I was frustrated others weren't helping:A2_R_ENT	
+A2_R_CON	D2_A	reflection	Contribution shows in small moves. That's organizational citizenship — discretionary effort that builds teams.	A2_Q2	axis2:contribution
+A2_R_ENT	D2_A	reflection	Entitlement is human. The shift to contribution starts with one small, unassigned give tomorrow.	A2_Q2	axis2:entitlement
+A2_Q2	A2_R_CON	question	At the end of today, what are you thinking about most?	The value I added|Whether I got credit|How I can help tomorrow|What the company owes me	D2_FINAL	
+A2_Q2	A2_R_ENT	question	At the end of today, what are you thinking about most?	The value I added|Whether I got credit|How I can help tomorrow|What the company owes me	D2_FINAL	
+D2_FINAL	A2_Q2	decision	answer=The value I added|How I can help tomorrow:A2_FINAL_CON,answer=Whether I got credit|What the company owes me:A2_FINAL_ENT	
+A2_FINAL_CON	D2_FINAL	reflection	That locks in a Contribution orientation for today.	BRIDGE_2_3	axis2:contribution
+A2_FINAL_ENT	D2_FINAL	reflection	That signals Entitlement. No shame — just data. One favor tomorrow flips the pattern.	BRIDGE_2_3	axis2:entitlement
+BRIDGE_2_3	A2_FINAL_CON	bridge	Last step: let's zoom out from your team — to the wider impact of your day.	A3_Q1	
+BRIDGE_2_3	A2_FINAL_ENT	bridge	Last step: let's zoom out from your team — to the wider impact of your day.	A3_Q1	
+A3_Q1	BRIDGE_2_3	question	When you think about today's biggest challenge, who comes to mind?	Just me|My team|A colleague who had it harder|The customer we serve	D3_A	
+D3_A	A3_Q1	decision	answer=Just me:A3_R_SELF,answer=My team|A colleague who had it harder|The customer we serve:A3_R_ALTRO	
+A3_R_SELF	D3_A	reflection	Self-centric radius: today was about your load. Transcendence means expanding that circle by one person.	A3_Q2	axis3:self
+A3_R_ALTRO	D3_A	reflection	Altrocentric radius: you held others in mind. That's the shift from 'What do I need?' to 'What does the world need from me?'	A3_Q2	axis3:altro
+A3_Q2	A3_R_SELF	question	If today was a story, the main character was:	Me and my workload|Our team and our deadline|Someone I could help|The person we serve	D3_FINAL	
+A3_Q2	A3_R_ALTRO	question	If today was a story, the main character was:	Me and my workload|Our team and our deadline|Someone I could help|The person we serve	D3_FINAL	
+D3_FINAL	A3_Q2	decision	answer=Me and my workload:A3_FINAL_SELF,answer=Our team and our deadline|Someone I could help|The person we serve:A3_FINAL_ALTRO	
+A3_FINAL_SELF	D3_FINAL	reflection	That confirms Self-Centric today. Tomorrow: ask one person 'What can I take off your plate?'	SUMMARY	axis3:self
+A3_FINAL_ALTRO	D3_FINAL	reflection	That confirms Altrocentric today. You're in transcendence mode.	SUMMARY	axis3:altro
+SUMMARY	A3_FINAL_SELF	summary	Today you leaned {axis1.dominant} on Locus, {axis2.dominant} on Orientation, and {axis3.dominant} on Radius.	END	
+SUMMARY	A3_FINAL_ALTRO	summary	Today you leaned {axis1.dominant} on Locus, {axis2.dominant} on Orientation, and {axis3.dominant} on Radius.	END	
+END	SUMMARY	end	Tomorrow's move: If victim+entitlement+self → write 1 thing you control + thank 1 person. If victor+contribution+altro → teach 1 lesson you learned. See you tomorrow.
+	
